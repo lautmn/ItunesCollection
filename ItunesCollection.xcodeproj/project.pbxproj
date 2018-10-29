@@ -13,6 +13,7 @@
 		086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3721876D2400CABBF4 /* Assets.xcassets */; };
 		086CCD3B21876D2400CABBF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3921876D2400CABBF4 /* LaunchScreen.storyboard */; };
 		086CCD3E21876D2400CABBF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD3D21876D2400CABBF4 /* main.m */; };
+		4B6B297DFD748AD9A395934E /* libPods-ItunesCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,9 @@
 		086CCD3A21876D2400CABBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		086CCD3C21876D2400CABBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		086CCD3D21876D2400CABBF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B6862C95B3FFA896D7E359B0 /* Pods-ItunesCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesCollection.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesCollection/Pods-ItunesCollection.release.xcconfig"; sourceTree = "<group>"; };
+		C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ItunesCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F76DB3A5ACA93518F101175A /* Pods-ItunesCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesCollection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesCollection/Pods-ItunesCollection.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6B297DFD748AD9A395934E /* libPods-ItunesCollection.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				086CCD2D21876D2400CABBF4 /* ItunesCollection */,
 				086CCD2C21876D2400CABBF4 /* Products */,
+				4FB2A564EF2131F73103389E /* Pods */,
+				53A51635AA386B59E8129C09 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +78,23 @@
 			path = ItunesCollection;
 			sourceTree = "<group>";
 		};
+		4FB2A564EF2131F73103389E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F76DB3A5ACA93518F101175A /* Pods-ItunesCollection.debug.xcconfig */,
+				B6862C95B3FFA896D7E359B0 /* Pods-ItunesCollection.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		53A51635AA386B59E8129C09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,6 +102,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 086CCD4121876D2400CABBF4 /* Build configuration list for PBXNativeTarget "ItunesCollection" */;
 			buildPhases = (
+				5149BB5D02936D9B51D4DDBE /* [CP] Check Pods Manifest.lock */,
 				086CCD2721876D2300CABBF4 /* Sources */,
 				086CCD2821876D2300CABBF4 /* Frameworks */,
 				086CCD2921876D2300CABBF4 /* Resources */,
@@ -135,6 +160,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5149BB5D02936D9B51D4DDBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ItunesCollection-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		086CCD2721876D2300CABBF4 /* Sources */ = {
@@ -281,6 +331,7 @@
 		};
 		086CCD4221876D2400CABBF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F76DB3A5ACA93518F101175A /* Pods-ItunesCollection.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +349,7 @@
 		};
 		086CCD4321876D2400CABBF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6862C95B3FFA896D7E359B0 /* Pods-ItunesCollection.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
