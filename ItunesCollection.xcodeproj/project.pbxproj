@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083B23C521883E020071D760 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C421883E020071D760 /* SearchViewController.m */; };
+		083B23C821883E120071D760 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C721883E120071D760 /* ProfileViewController.m */; };
+		083B23CC21883EF00071D760 /* img_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CA21883EF00071D760 /* img_search.png */; };
+		083B23CD21883EF00071D760 /* img_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CB21883EF00071D760 /* img_profile.png */; };
 		086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD2F21876D2400CABBF4 /* AppDelegate.m */; };
-		086CCD3321876D2400CABBF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD3221876D2400CABBF4 /* ViewController.m */; };
 		086CCD3621876D2400CABBF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3421876D2400CABBF4 /* Main.storyboard */; };
 		086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3721876D2400CABBF4 /* Assets.xcassets */; };
 		086CCD3B21876D2400CABBF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3921876D2400CABBF4 /* LaunchScreen.storyboard */; };
@@ -17,11 +20,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		083B23C321883E020071D760 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		083B23C421883E020071D760 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		083B23C621883E120071D760 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		083B23C721883E120071D760 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		083B23CA21883EF00071D760 /* img_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_search.png; sourceTree = "<group>"; };
+		083B23CB21883EF00071D760 /* img_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_profile.png; sourceTree = "<group>"; };
 		086CCD2B21876D2400CABBF4 /* ItunesCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086CCD2E21876D2400CABBF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		086CCD2F21876D2400CABBF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		086CCD3121876D2400CABBF4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		086CCD3221876D2400CABBF4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		086CCD3521876D2400CABBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		086CCD3721876D2400CABBF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		086CCD3A21876D2400CABBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		083B23C921883EE40071D760 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				083B23CB21883EF00071D760 /* img_profile.png */,
+				083B23CA21883EF00071D760 /* img_search.png */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		086CCD2221876D2300CABBF4 = {
 			isa = PBXGroup;
 			children = (
@@ -67,8 +83,11 @@
 			children = (
 				086CCD2E21876D2400CABBF4 /* AppDelegate.h */,
 				086CCD2F21876D2400CABBF4 /* AppDelegate.m */,
-				086CCD3121876D2400CABBF4 /* ViewController.h */,
-				086CCD3221876D2400CABBF4 /* ViewController.m */,
+				083B23C321883E020071D760 /* SearchViewController.h */,
+				083B23C421883E020071D760 /* SearchViewController.m */,
+				083B23C621883E120071D760 /* ProfileViewController.h */,
+				083B23C721883E120071D760 /* ProfileViewController.m */,
+				083B23C921883EE40071D760 /* Source */,
 				086CCD3421876D2400CABBF4 /* Main.storyboard */,
 				086CCD3721876D2400CABBF4 /* Assets.xcassets */,
 				086CCD3921876D2400CABBF4 /* LaunchScreen.storyboard */,
@@ -155,7 +174,9 @@
 			files = (
 				086CCD3B21876D2400CABBF4 /* LaunchScreen.storyboard in Resources */,
 				086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */,
+				083B23CD21883EF00071D760 /* img_profile.png in Resources */,
 				086CCD3621876D2400CABBF4 /* Main.storyboard in Resources */,
+				083B23CC21883EF00071D760 /* img_search.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,15 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ItunesCollection-checkManifestLockResult.txt",
 			);
@@ -191,9 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				086CCD3321876D2400CABBF4 /* ViewController.m in Sources */,
 				086CCD3E21876D2400CABBF4 /* main.m in Sources */,
+				083B23C521883E020071D760 /* SearchViewController.m in Sources */,
 				086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */,
+				083B23C821883E120071D760 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
