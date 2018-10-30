@@ -11,6 +11,7 @@
 		083B23C821883E120071D760 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C721883E120071D760 /* ProfileViewController.m */; };
 		083B23CC21883EF00071D760 /* img_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CA21883EF00071D760 /* img_search.png */; };
 		083B23CD21883EF00071D760 /* img_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CB21883EF00071D760 /* img_profile.png */; };
+		083B23D02188446F0071D760 /* ItunesApiConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23CF2188446F0071D760 /* ItunesApiConnector.m */; };
 		086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD2F21876D2400CABBF4 /* AppDelegate.m */; };
 		086CCD3621876D2400CABBF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3421876D2400CABBF4 /* Main.storyboard */; };
 		086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3721876D2400CABBF4 /* Assets.xcassets */; };
@@ -26,6 +27,8 @@
 		083B23C721883E120071D760 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		083B23CA21883EF00071D760 /* img_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_search.png; sourceTree = "<group>"; };
 		083B23CB21883EF00071D760 /* img_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_profile.png; sourceTree = "<group>"; };
+		083B23CE2188446F0071D760 /* ItunesApiConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItunesApiConnector.h; sourceTree = "<group>"; };
+		083B23CF2188446F0071D760 /* ItunesApiConnector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItunesApiConnector.m; sourceTree = "<group>"; };
 		086CCD2B21876D2400CABBF4 /* ItunesCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086CCD2E21876D2400CABBF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		086CCD2F21876D2400CABBF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				083B23C421883E020071D760 /* SearchViewController.m */,
 				083B23C621883E120071D760 /* ProfileViewController.h */,
 				083B23C721883E120071D760 /* ProfileViewController.m */,
+				083B23CE2188446F0071D760 /* ItunesApiConnector.h */,
+				083B23CF2188446F0071D760 /* ItunesApiConnector.m */,
 				083B23C921883EE40071D760 /* Source */,
 				086CCD3421876D2400CABBF4 /* Main.storyboard */,
 				086CCD3721876D2400CABBF4 /* Assets.xcassets */,
@@ -209,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				086CCD3E21876D2400CABBF4 /* main.m in Sources */,
+				083B23D02188446F0071D760 /* ItunesApiConnector.m in Sources */,
 				083B23C521883E020071D760 /* SearchViewController.m in Sources */,
 				086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */,
 				083B23C821883E120071D760 /* ProfileViewController.m in Sources */,

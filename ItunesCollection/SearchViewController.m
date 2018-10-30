@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "ItunesApiConnector.h"
 
 @interface SearchViewController ()
 
