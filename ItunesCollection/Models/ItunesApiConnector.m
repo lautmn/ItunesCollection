@@ -25,7 +25,12 @@
 }
 
 - (void)searchItunesMusicWithKeyword:(NSString *)keyword completion:(DoneBlock)doneBlock {
-    NSDictionary *parameters = @{@"term":keyword};
+    NSDictionary *parameters = @{@"term":keyword, @"media":@"music"};
+    [self doHttpGet:ITUNES_SEARCH_API_URL parameters:parameters completion:doneBlock];
+}
+
+- (void)searchItunesMovieWithKeyword:(NSString *)keyword completion:(DoneBlock)doneBlock {
+    NSDictionary *parameters = @{@"term":keyword, @"media":@"movie"};
     [self doHttpGet:ITUNES_SEARCH_API_URL parameters:parameters completion:doneBlock];
 }
 

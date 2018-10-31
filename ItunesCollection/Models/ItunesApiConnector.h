@@ -14,5 +14,6 @@ typedef void (^DoneBlock)(id result, NSError *error);
 
 + (instancetype)shareInstance;
 - (void)searchItunesMusicWithKeyword:(NSString *)keyword completion:(DoneBlock)doneBlock;
+- (void)searchItunesMovieWithKeyword:(NSString *)keyword completion:(DoneBlock)doneBlock;
 
 @end
