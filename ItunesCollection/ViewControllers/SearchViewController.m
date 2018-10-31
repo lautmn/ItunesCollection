@@ -148,10 +148,18 @@
 
 - (void)didCollectMovieInCell:(MovieTableViewCell *)cell {
     NSLog(@"%@", cell);
+//    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    cell.collectMovieButton.selected = !cell.collectMovieButton.selected;
+    [self.resultTableView beginUpdates];
+    [self.resultTableView endUpdates];
+    
 }
 
 - (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
     NSLog(@"MUSIC:%@", cell);
+    cell.collectMusicButton.selected = !cell.collectMusicButton.selected;
+    [self.resultTableView beginUpdates];
+    [self.resultTableView endUpdates];
     
 }
 

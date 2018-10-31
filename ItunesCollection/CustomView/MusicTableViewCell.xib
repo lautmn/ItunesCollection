@@ -21,14 +21,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EPh-4s-dXu">
-                        <rect key="frame" x="10" y="10" width="120" height="120"/>
+                        <rect key="frame" x="10" y="10" width="100" height="100"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="120" id="Yjz-i7-WzW"/>
-                            <constraint firstAttribute="width" constant="120" id="shK-Rc-lLK"/>
+                            <constraint firstAttribute="height" constant="100" id="Yjz-i7-WzW"/>
+                            <constraint firstAttribute="width" constant="100" id="shK-Rc-lLK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="載入中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcS-Sb-TUl">
-                        <rect key="frame" x="140" y="10" width="349" height="30"/>
+                        <rect key="frame" x="120" y="10" width="369" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="stV-g0-tEj"/>
                         </constraints>
@@ -37,29 +37,29 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="載入中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOl-c7-GQr">
-                        <rect key="frame" x="140" y="45" width="289" height="21"/>
+                        <rect key="frame" x="120" y="45" width="308" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="載入中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpO-5R-5YF">
-                        <rect key="frame" x="140" y="71" width="289" height="21"/>
+                        <rect key="frame" x="120" y="71" width="308" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="載入中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2r-a3-iqs">
-                        <rect key="frame" x="140" y="97" width="289" height="21"/>
+                        <rect key="frame" x="120" y="97" width="308" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lap-5w-mUJ">
-                        <rect key="frame" x="439" y="51" width="50" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lap-5w-mUJ">
+                        <rect key="frame" x="438" y="51" width="51" height="30"/>
                         <color key="backgroundColor" red="0.35294117647058826" green="0.396078431372549" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="bxv-nb-8un"/>
-                        </constraints>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
                         <state key="normal" title="收藏">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
