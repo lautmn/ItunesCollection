@@ -35,7 +35,6 @@
 - (IBAction)searchButtonClicked:(id)sender {
     [self.movieArray removeAllObjects];
     [self.musicArray removeAllObjects];
-//    [self.resultTableView reloadData];
     
     ItunesApiConnector *connector = [ItunesApiConnector shareInstance];
     [connector searchItunesMusicWithKeyword:self.keywordTextField.text completion:^(id result, NSError *error) {
@@ -147,20 +146,33 @@
 }
 
 - (void)didCollectMovieInCell:(MovieTableViewCell *)cell {
-    NSLog(@"%@", cell);
-//    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    NSIndexPath *indexPath = [self.resultTableView indexPathForCell:cell];
+    if (!cell.collectMovieButton.isSelected) {
+        // 收藏
+        [collectionManager storeCollectionWithInfo:self.movieArray[indexPath.row] andType:@"movie"];
+    } else {
+        // 取消收藏
+        [collectionManager deleteCollectionWithTrackId:[self.movieArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
+    }
     cell.collectMovieButton.selected = !cell.collectMovieButton.selected;
     [self.resultTableView beginUpdates];
     [self.resultTableView endUpdates];
-    
 }
 
 - (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
-    NSLog(@"MUSIC:%@", cell);
+    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    NSIndexPath *indexPath = [self.resultTableView indexPathForCell:cell];
+    if (!cell.collectMusicButton.isSelected) {
+        // 收藏
+        [collectionManager storeCollectionWithInfo:self.musicArray[indexPath.row] andType:@"music"];
+    } else {
+        // 取消收藏
+        [collectionManager deleteCollectionWithTrackId:[self.musicArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
+    }
     cell.collectMusicButton.selected = !cell.collectMusicButton.selected;
     [self.resultTableView beginUpdates];
     [self.resultTableView endUpdates];
-    
 }
 
 

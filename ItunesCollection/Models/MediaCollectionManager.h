@@ -11,7 +11,7 @@
 @interface MediaCollectionManager : NSObject
 
 + (instancetype)shareInstance;
-- (void)storeCollectionWithInfo:(NSDictionary *)info;
-- (void)deleteCollectionWithTrackId:(NSString *)trackId;
+- (void)storeCollectionWithInfo:(NSDictionary *)info andType:(NSString *)type;
+- (void)deleteCollectionWithTrackId:(NSString *)trackId andType:(NSString *)type;
 
 @end
