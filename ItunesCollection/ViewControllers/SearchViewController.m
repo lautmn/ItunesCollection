@@ -54,8 +54,6 @@
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.resultTableView reloadData];
-//                        [self.resultTableView beginUpdates];
-//                        [self.resultTableView endUpdates];
                     });
                 }];;
             });
@@ -82,8 +80,6 @@
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.resultTableView reloadData];
-//                        [self.resultTableView beginUpdates];
-//                        [self.resultTableView endUpdates];
                     });
                 }];;
             });
@@ -137,6 +133,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
     if (indexPath.section == 0 && self.movieArray.count > 0) {
         static NSString *movieCellIdentifier = @"MovieTableViewCell";
         MovieTableViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
@@ -153,6 +150,9 @@
         
         movieCell.longDescription.numberOfLines = 2;
         movieCell.readMoreButton.hidden = NO;
+        
+        movieCell.collectMovieButton.selected = [collectionManager isCollectedTrackId:[self.movieArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
+        
         return movieCell;
     } else {
         static NSString *musicCellIdentifier = @"MusicTableViewCell";
@@ -166,6 +166,8 @@
         NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.musicArray[indexPath.row] objectForKey:@"trackId"]];
         NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
         musicCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
+        
+        musicCell.collectMusicButton.selected = [collectionManager isCollectedTrackId:[self.musicArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
         
         return musicCell;
     }

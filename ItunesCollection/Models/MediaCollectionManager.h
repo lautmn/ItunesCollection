@@ -14,4 +14,6 @@
 - (void)storeCollectionWithInfo:(NSDictionary *)info andType:(NSString *)type;
 - (void)deleteCollectionWithTrackId:(NSString *)trackId andType:(NSString *)type;
 
+- (BOOL)isCollectedTrackId:(NSString *)trackId andType:(NSString *)type;
+
 @end

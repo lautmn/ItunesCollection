@@ -39,4 +39,16 @@
     [userDefaults setObject:collectionArray forKey:type];
     [userDefaults synchronize];
 }
+
+- (BOOL)isCollectedTrackId:(NSString *)trackId andType:(NSString *)type {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *collectionArray = [[NSMutableArray alloc] initWithArray:[userDefaults objectForKey:type]];
+    for (NSDictionary *collectionInfo in collectionArray) {
+        if ([[collectionInfo objectForKey:@"trackId"] isEqualToString:trackId]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
