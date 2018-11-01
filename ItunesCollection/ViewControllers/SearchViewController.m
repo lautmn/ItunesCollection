@@ -33,26 +33,63 @@
 }
 
 - (IBAction)searchButtonClicked:(id)sender {
-    [self.movieArray removeAllObjects];
-    [self.musicArray removeAllObjects];
+    [self.resultTableView setContentOffset:CGPointZero animated:NO];
     
     ItunesApiConnector *connector = [ItunesApiConnector shareInstance];
-    [connector searchItunesMusicWithKeyword:self.keywordTextField.text completion:^(id result, NSError *error) {
-        if (result) {
-            NSLog(@"success");
-            self.musicArray = [[NSMutableArray alloc] initWithArray:[result objectForKey:@"results"]];
-            [self.resultTableView reloadData];
-        } else {
-            NSLog(@"fail");
-        }
-    }];
+    
     [connector searchItunesMovieWithKeyword:self.keywordTextField.text completion:^(id result, NSError *error) {
         if (result) {
-            NSLog(@"success");
+            [self.movieArray removeAllObjects];
             self.movieArray = [[NSMutableArray alloc] initWithArray:[result objectForKey:@"results"]];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self.movieArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+                    NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [obj objectForKey:@"trackId"]];
+                    NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
+                    
+                    NSString *imgUrlString = [obj objectForKey:@"artworkUrl100"];
+                    NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
+                    NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
+                    [imgData writeToFile:imgPath atomically:YES];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.resultTableView reloadData];
+//                        [self.resultTableView beginUpdates];
+//                        [self.resultTableView endUpdates];
+                    });
+                }];;
+            });
             [self.resultTableView reloadData];
         } else {
-            NSLog(@"fail");
+            
+        }
+    }];
+    
+    [connector searchItunesMusicWithKeyword:self.keywordTextField.text completion:^(id result, NSError *error) {
+        if (result) {
+            [self.musicArray removeAllObjects];
+            self.musicArray = [[NSMutableArray alloc] initWithArray:[result objectForKey:@"results"]];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self.musicArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+                    NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [obj objectForKey:@"trackId"]];
+                    NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
+                    
+                    NSString *imgUrlString = [obj objectForKey:@"artworkUrl100"];
+                    NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
+                    NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
+                    [imgData writeToFile:imgPath atomically:YES];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.resultTableView reloadData];
+//                        [self.resultTableView beginUpdates];
+//                        [self.resultTableView endUpdates];
+                    });
+                }];;
+            });
+            [self.resultTableView reloadData];
+        } else {
+            
         }
     }];
 }
@@ -99,6 +136,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     if (indexPath.section == 0 && self.movieArray.count > 0) {
         static NSString *movieCellIdentifier = @"MovieTableViewCell";
         MovieTableViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
@@ -108,6 +146,11 @@
         movieCell.collectionName.text = [self.movieArray[indexPath.row] objectForKey:@"collectionName"];
         movieCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.movieArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
         movieCell.longDescription.text = [self.movieArray[indexPath.row] objectForKey:@"longDescription"];
+        
+        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.movieArray[indexPath.row] objectForKey:@"trackId"]];
+        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
+        movieCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
+        
         movieCell.longDescription.numberOfLines = 2;
         movieCell.readMoreButton.hidden = NO;
         return movieCell;
@@ -119,6 +162,11 @@
         musicCell.artistName.text = [self.musicArray[indexPath.row] objectForKey:@"artistName"];
         musicCell.collectionName.text = [self.musicArray[indexPath.row] objectForKey:@"collectionName"];
         musicCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.musicArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
+        
+        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.musicArray[indexPath.row] objectForKey:@"trackId"]];
+        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
+        musicCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
+        
         return musicCell;
     }
 }
