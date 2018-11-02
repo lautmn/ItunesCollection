@@ -12,7 +12,7 @@
 #import "MovieTableViewCell.h"
 #import "MediaCollectionManager.h"
 
-@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, MovieCellDelegate, MusicCellDelegate> {
+@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, MovieCellDelegate, MusicCellDelegate, UITextFieldDelegate> {
     BOOL didFinishSearchMovie;
     BOOL didFinishSearchMusic;
 }
@@ -256,6 +256,12 @@
     }
     cell.collectMusicButton.selected = !cell.collectMusicButton.selected;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
+}
+
+#pragma mark - UItextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - NSNotificationCenter
