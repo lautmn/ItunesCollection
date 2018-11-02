@@ -40,6 +40,7 @@
 
 - (IBAction)searchButtonClicked:(id)sender {
     [self.resultTableView setContentOffset:CGPointZero animated:NO];
+    [self.keywordTextField resignFirstResponder];
     
     ItunesApiConnector *connector = [ItunesApiConnector shareInstance];
     [self.movieArray removeAllObjects];
