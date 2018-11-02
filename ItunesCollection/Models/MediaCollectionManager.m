@@ -7,6 +7,7 @@
 //
 
 #import "MediaCollectionManager.h"
+#import <UIKit/UIKit.h>
 
 @implementation MediaCollectionManager
 
@@ -49,6 +50,24 @@
         }
     }
     return NO;
+}
+
+- (NSMutableArray *)getCollectionWithType:(NSString *)type {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [[NSMutableArray alloc] initWithArray:[userDefaults objectForKey:type]];
+}
+
+- (void)changeThemeColor {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"themeColor"] || [[userDefaults objectForKey:@"themeColor"] isEqualToString:@"darkColor"]) {
+        [userDefaults setObject:@"lightColor" forKey:@"themeColor"];
+    } else {
+        [userDefaults setObject:@"darkColor" forKey:@"themeColor"];
+    }
+    [userDefaults synchronize];
+    
+    NSDictionary *lightColorInfo = @{@"123":[UIColor redColor]};
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"GET_FIRST_LOGIN_SUCCESS" object:responseObject];
 }
 
 @end
