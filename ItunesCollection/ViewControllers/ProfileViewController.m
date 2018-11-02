@@ -10,6 +10,10 @@
 
 @interface ProfileViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *themeColorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *collectionAmountLabel;
+
+
 @end
 
 @implementation ProfileViewController
@@ -17,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)aboutItunesButtonClick:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning {

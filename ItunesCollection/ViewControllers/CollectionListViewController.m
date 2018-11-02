@@ -12,9 +12,13 @@
 #import "MediaCollectionManager.h"
 
 @interface CollectionListViewController () <UITableViewDataSource, UITableViewDelegate, MovieCellDelegate, MusicCellDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *collectionListTableView;
+@property (weak, nonatomic) IBOutlet UITableView *musicCollectionListTableView;
+@property (weak, nonatomic) IBOutlet UITableView *movieCollectionListTableView;
+
 @property (strong, nonatomic) NSMutableArray *collectionListArray;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegementControl;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *collectionScrollView;
 
 @end
 
@@ -24,21 +28,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    [self.collectionListTableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
-    [self.collectionListTableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
+    [self.musicCollectionListTableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
+    [self.movieCollectionListTableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
     self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"movie"]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReload) name:@"SHOULD_RELOAD" object:nil];
 }
 
 - (IBAction)didChangeSegemey:(UISegmentedControl *)sender {
+    
+    
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    [self.collectionListTableView setContentOffset:CGPointZero animated:NO];
+    [self.musicCollectionListTableView setContentOffset:CGPointZero animated:NO];
     if (sender.selectedSegmentIndex == 0) {
         self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"movie"]];
     } else {
         self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"music"]];
     }
-    [self.collectionListTableView reloadData];
+    [self.musicCollectionListTableView reloadData];
 }
 
 
@@ -130,13 +136,13 @@
 - (void)didClickReadMoreInCell:(MovieTableViewCell *)cell {
     cell.longDescription.numberOfLines = 0;
     cell.readMoreButton.hidden = YES;
-    [self.collectionListTableView beginUpdates];
-    [self.collectionListTableView endUpdates];
+    [self.musicCollectionListTableView beginUpdates];
+    [self.musicCollectionListTableView endUpdates];
 }
 
 - (void)didCollectMovieInCell:(MovieTableViewCell *)cell {
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    NSIndexPath *indexPath = [self.collectionListTableView indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.musicCollectionListTableView indexPathForCell:cell];
     if (!cell.collectMovieButton.isSelected) {
         // 收藏
         [collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:@"movie"];
@@ -150,7 +156,7 @@
 
 - (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    NSIndexPath *indexPath = [self.collectionListTableView indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.musicCollectionListTableView indexPathForCell:cell];
     if (!cell.collectMusicButton.isSelected) {
         // 收藏
         [collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:@"music"];
@@ -170,7 +176,7 @@
     } else {
         self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"music"]];
     }
-    [self.collectionListTableView reloadData];
+    [self.musicCollectionListTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
