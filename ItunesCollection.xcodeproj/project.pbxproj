@@ -24,6 +24,8 @@
 		086CCD3E21876D2400CABBF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD3D21876D2400CABBF4 /* main.m */; };
 		08EC1CF7218C26C200D7D5FF /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EC1CF6218C26C200D7D5FF /* Black.png */; };
 		08EC1CFA218C425400D7D5FF /* CollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC1CF9218C425400D7D5FF /* CollectionListViewController.m */; };
+		08EC1CFC218C93F700D7D5FF /* qeustionMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EC1CFB218C93F700D7D5FF /* qeustionMark.png */; };
+		08EC1CFE218C942B00D7D5FF /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EC1CFD218C942B00D7D5FF /* arrow.png */; };
 		4B6B297DFD748AD9A395934E /* libPods-ItunesCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		08EC1CF6218C26C200D7D5FF /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Black.png; sourceTree = "<group>"; };
 		08EC1CF8218C425400D7D5FF /* CollectionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionListViewController.h; sourceTree = "<group>"; };
 		08EC1CF9218C425400D7D5FF /* CollectionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionListViewController.m; sourceTree = "<group>"; };
+		08EC1CFB218C93F700D7D5FF /* qeustionMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qeustionMark.png; sourceTree = "<group>"; };
+		08EC1CFD218C942B00D7D5FF /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		B6862C95B3FFA896D7E359B0 /* Pods-ItunesCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesCollection.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesCollection/Pods-ItunesCollection.release.xcconfig"; sourceTree = "<group>"; };
 		C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ItunesCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76DB3A5ACA93518F101175A /* Pods-ItunesCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesCollection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesCollection/Pods-ItunesCollection.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				08EC1CF6218C26C200D7D5FF /* Black.png */,
 				083B23CB21883EF00071D760 /* img_profile.png */,
 				083B23CA21883EF00071D760 /* img_search.png */,
+				08EC1CFB218C93F700D7D5FF /* qeustionMark.png */,
+				08EC1CFD218C942B00D7D5FF /* arrow.png */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -233,8 +239,10 @@
 				086CCD3B21876D2400CABBF4 /* LaunchScreen.storyboard in Resources */,
 				08EC1CF7218C26C200D7D5FF /* Black.png in Resources */,
 				083B23DA2189AD490071D760 /* MovieTableViewCell.xib in Resources */,
+				08EC1CFE218C942B00D7D5FF /* arrow.png in Resources */,
 				086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */,
 				083B23CD21883EF00071D760 /* img_profile.png in Resources */,
+				08EC1CFC218C93F700D7D5FF /* qeustionMark.png in Resources */,
 				083B23D521897B010071D760 /* MusicTableViewCell.xib in Resources */,
 				086CCD3621876D2400CABBF4 /* Main.storyboard in Resources */,
 				083B23CC21883EF00071D760 /* img_search.png in Resources */,
