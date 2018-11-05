@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *musicArray;
 @property (strong, nonatomic) NSMutableArray *movieArray;
 
+@property (strong, nonatomic) MediaCollectionManager *collectionManager;
+
 //@property (assign, nonatomic) BOOL didFinishSearchMovie;
 
 @end
@@ -30,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.collectionManager = [MediaCollectionManager shareInstance];
     self.musicArray = [[NSMutableArray alloc] init];
     self.movieArray = [[NSMutableArray alloc] init];
     [self.resultTableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
@@ -148,8 +151,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    
     NSString *cellIdentifier;
     NSArray *sourceArray;
     NSString *mediaType;
@@ -189,7 +190,7 @@
     customCell.longDescription.numberOfLines = 2;
     customCell.readMoreButton.hidden = NO;
     
-    customCell.collectButton.selected = [collectionManager isCollectedTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
+    customCell.collectButton.selected = [self.collectionManager isCollectedTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
     
     return customCell;
 }
@@ -217,7 +218,6 @@
 }
 
 - (void)didCollectItemInCell:(CustomTableViewCell *)cell {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
     NSIndexPath *indexPath = [self.resultTableView indexPathForCell:cell];
     NSArray *sourceArray;
     NSString *mediaType;
@@ -231,10 +231,10 @@
     
     if (!cell.collectButton.isSelected) {
         // 收藏
-        [collectionManager storeCollectionWithInfo:sourceArray[indexPath.row] andType:mediaType];
+        [self.collectionManager storeCollectionWithInfo:sourceArray[indexPath.row] andType:mediaType];
     } else {
         // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
+        [self.collectionManager deleteCollectionWithTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
     }
     cell.collectButton.selected = !cell.collectButton.selected;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];

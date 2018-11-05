@@ -57,6 +57,10 @@
     return [[NSMutableArray alloc] initWithArray:[userDefaults objectForKey:type]];
 }
 
+- (NSUInteger)getCollectionAmount {
+    return [self getCollectionWithType:@"movie"].count + [self getCollectionWithType:@"music"].count;
+}
+
 - (void)changeThemeColor {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (![userDefaults objectForKey:@"themeColor"] || [[userDefaults objectForKey:@"themeColor"] isEqualToString:@"darkColor"]) {

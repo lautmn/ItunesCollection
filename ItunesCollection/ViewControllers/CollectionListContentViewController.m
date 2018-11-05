@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSMutableArray *collectionListArray;
 
+@property (strong, nonatomic) MediaCollectionManager *collectionManager;
+
 @end
 
 @implementation CollectionListContentViewController
@@ -23,10 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    self.collectionManager = [MediaCollectionManager shareInstance];
     [self.collectionListTableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
     [self.collectionListTableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
-    self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:[self getMediaType]]];
+    self.collectionListArray = [[NSMutableArray alloc] initWithArray:[self.collectionManager getCollectionWithType:[self getMediaType]]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReload) name:@"SHOULD_RELOAD" object:nil];
 }
 
@@ -41,8 +43,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    
     NSString *cellIdentifier;
     
     switch (self.displayMediaType) {
@@ -51,7 +51,7 @@
             break;
             
         case Music:
-            cellIdentifier = @"MovieTableViewCell";
+            cellIdentifier = @"MusicTableViewCell";
             break;
             
         default:
@@ -85,7 +85,7 @@
     customCell.longDescription.numberOfLines = 2;
     customCell.readMoreButton.hidden = NO;
     
-    customCell.collectButton.selected = [collectionManager isCollectedTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:[self getMediaType]];
+    customCell.collectButton.selected = [self.collectionManager isCollectedTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:[self getMediaType]];
     
     return customCell;
 
@@ -101,16 +101,15 @@
 }
 
 - (void)didCollectItemInCell:(CustomTableViewCell *)cell {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
     NSIndexPath *indexPath = [self.collectionListTableView indexPathForCell:cell];
     NSString *mediaType = [self getMediaType];
     
     if (!cell.collectButton.isSelected) {
         // 收藏
-        [collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:mediaType];
+        [self.collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:mediaType];
     } else {
         // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
+        [self.collectionManager deleteCollectionWithTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
     }
     cell.collectButton.selected = !cell.collectButton.selected;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
@@ -118,8 +117,7 @@
 
 #pragma mark - NSNotificationCenter
 - (void)shouldReload {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:[self getMediaType]]];
+    self.collectionListArray = [[NSMutableArray alloc] initWithArray:[self.collectionManager getCollectionWithType:[self getMediaType]]];
     [self.collectionListTableView reloadData];
 }
 

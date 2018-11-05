@@ -17,6 +17,7 @@
 - (BOOL)isCollectedTrackId:(NSString *)trackId andType:(NSString *)type;
 
 - (NSMutableArray *)getCollectionWithType:(NSString *)type;
+- (NSUInteger)getCollectionAmount;
 
 - (void)changeThemeColor;
 
