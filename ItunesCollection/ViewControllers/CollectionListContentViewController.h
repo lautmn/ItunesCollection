@@ -10,4 +10,12 @@
 
 @interface CollectionListContentViewController : UIViewController
 
+typedef enum : NSUInteger {
+    MovieAndMusic = 0,
+    Movie,
+    Music
+} MediaType;
+
+@property MediaType displayMediaType;
+
 @end

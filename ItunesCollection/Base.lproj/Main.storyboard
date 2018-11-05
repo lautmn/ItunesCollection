@@ -201,7 +201,7 @@
                                 </segments>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="didChangeSegemey:" destination="Omx-xV-t3S" eventType="valueChanged" id="VEm-q9-9Mu"/>
+                                    <action selector="didChangeSegment:" destination="Omx-xV-t3S" eventType="valueChanged" id="J4X-zU-3uU"/>
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ya8-tK-gye">
@@ -225,7 +225,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="收藏項目" id="Rl7-8I-mSz"/>
                     <connections>
-                        <outlet property="typeSegementControl" destination="IYz-wF-H5i" id="Bs5-Tu-fcG"/>
+                        <outlet property="typeSegmentControl" destination="IYz-wF-H5i" id="TaM-JD-6aK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjg-9C-1Jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,7 +411,7 @@
         <!--Page View Controller-->
         <scene sceneID="WQT-6e-N0n">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="LTR-0c-NXB" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="LTR-0c-NXB" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwR-10-e8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="2488"/>

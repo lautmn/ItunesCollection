@@ -7,18 +7,12 @@
 //
 
 #import "CollectionListViewController.h"
-#import "MusicTableViewCell.h"
-#import "MovieTableViewCell.h"
-#import "MediaCollectionManager.h"
+#import "CollectionListContentViewController.h"
 
-@interface CollectionListViewController () <UITableViewDataSource, UITableViewDelegate, MovieCellDelegate, MusicCellDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *musicCollectionListTableView;
-@property (weak, nonatomic) IBOutlet UITableView *movieCollectionListTableView;
+@interface CollectionListViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
-@property (strong, nonatomic) NSMutableArray *collectionListArray;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegementControl;
-
-
+@property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegmentControl;
+@property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @end
 
@@ -27,158 +21,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    [self.musicCollectionListTableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
-    [self.movieCollectionListTableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
-    self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"movie"]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReload) name:@"SHOULD_RELOAD" object:nil];
-}
-
-- (IBAction)didChangeSegemey:(UISegmentedControl *)sender {
+    self.pageViewController = self.childViewControllers[0];
+    self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
     
-    
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    [self.musicCollectionListTableView setContentOffset:CGPointZero animated:NO];
-    if (sender.selectedSegmentIndex == 0) {
-        self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"movie"]];
-    } else {
-        self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"music"]];
+    [self.pageViewController setViewControllers:@[[self viewControllerWithMediaType:Movie]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+}
+
+#pragma mark - IBAction
+
+- (IBAction)didChangeSegment:(UISegmentedControl *)sender {
+    MediaType mediaType = sender.selectedSegmentIndex == 0 ? Movie : Music;
+    [self.pageViewController setViewControllers:@[[self viewControllerWithMediaType:mediaType]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+}
+
+#pragma mark - UIPageViewControllerDataSource
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    NSUInteger displayMediaType = ((CollectionListContentViewController *)viewController).displayMediaType;
+    if (displayMediaType == Movie) {
+        return nil;
     }
-    [self.musicCollectionListTableView reloadData];
+    return [self viewControllerWithMediaType:Movie];
 }
 
-
-#pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.collectionListArray.count > 0 ? 1 : 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.collectionListArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    
-    if (self.typeSegementControl.selectedSegmentIndex == 0) {
-        static NSString *movieCellIdentifier = @"MovieTableViewCell";
-        MovieTableViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
-        movieCell.delegate = self;
-        movieCell.trackName.text = [self.collectionListArray[indexPath.row] objectForKey:@"trackName"];
-        movieCell.artistName.text = [self.collectionListArray[indexPath.row] objectForKey:@"artistName"];
-        movieCell.collectionName.text = [self.collectionListArray[indexPath.row] objectForKey:@"collectionName"];
-        movieCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.collectionListArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
-        movieCell.longDescription.text = [self.collectionListArray[indexPath.row] objectForKey:@"longDescription"];
-        
-        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.collectionListArray[indexPath.row] objectForKey:@"trackId"]];
-        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
-        movieCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
-        if (![NSData dataWithContentsOfFile:imgPath]) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *imgUrlString = [self.collectionListArray[indexPath.row] objectForKey:@"artworkUrl100"];
-                NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
-                NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    movieCell.artworkImageView.image = [UIImage imageWithData:imgData];
-                });
-            });
-        } else {
-            movieCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
-        }
-        
-        movieCell.longDescription.numberOfLines = 2;
-        movieCell.readMoreButton.hidden = NO;
-        
-        movieCell.collectMovieButton.selected = [collectionManager isCollectedTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
-        
-        return movieCell;
-    } else {
-        static NSString *musicCellIdentifier = @"MusicTableViewCell";
-        MusicTableViewCell *musicCell = [tableView dequeueReusableCellWithIdentifier:musicCellIdentifier];
-        musicCell.delegate = self;
-        musicCell.trackName.text = [self.collectionListArray[indexPath.row] objectForKey:@"trackName"];
-        musicCell.artistName.text = [self.collectionListArray[indexPath.row] objectForKey:@"artistName"];
-        musicCell.collectionName.text = [self.collectionListArray[indexPath.row] objectForKey:@"collectionName"];
-        musicCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.collectionListArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
-        
-        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.collectionListArray[indexPath.row] objectForKey:@"trackId"]];
-        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
-        musicCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
-        if (![NSData dataWithContentsOfFile:imgPath]) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *imgUrlString = [self.collectionListArray[indexPath.row] objectForKey:@"artworkUrl100"];
-                NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
-                NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    musicCell.artworkImageView.image = [UIImage imageWithData:imgData];
-                });
-            });
-        } else {
-            musicCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
-        }
-        
-        musicCell.collectMusicButton.selected = [collectionManager isCollectedTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
-        
-        return musicCell;
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    NSUInteger displayMediaType = ((CollectionListContentViewController *)viewController).displayMediaType;
+    if (displayMediaType == Music) {
+        return nil;
     }
+    return [self viewControllerWithMediaType:Music];
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UIPageViewControllerDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *itunesUrlString = [self.collectionListArray[indexPath.row] objectForKey:@"trackViewUrl"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesUrlString] options:@{} completionHandler:nil];
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    NSUInteger displayMediaType = ((CollectionListContentViewController *)pageViewController.viewControllers[0]).displayMediaType;
+    self.typeSegmentControl.selectedSegmentIndex = displayMediaType == Movie ? 0 : 1;
 }
 
-#pragma mark - MovieCellDelegate
 
-- (void)didClickReadMoreInCell:(MovieTableViewCell *)cell {
-    cell.longDescription.numberOfLines = 0;
-    cell.readMoreButton.hidden = YES;
-    [self.musicCollectionListTableView beginUpdates];
-    [self.musicCollectionListTableView endUpdates];
-}
-
-- (void)didCollectMovieInCell:(MovieTableViewCell *)cell {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    NSIndexPath *indexPath = [self.musicCollectionListTableView indexPathForCell:cell];
-    if (!cell.collectMovieButton.isSelected) {
-        // 收藏
-        [collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:@"movie"];
-    } else {
-        // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
-    }
-    cell.collectMovieButton.selected = !cell.collectMovieButton.selected;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
-}
-
-#pragma mark - MusicCellDelegate
-
-- (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    NSIndexPath *indexPath = [self.musicCollectionListTableView indexPathForCell:cell];
-    if (!cell.collectMusicButton.isSelected) {
-        // 收藏
-        [collectionManager storeCollectionWithInfo:self.collectionListArray[indexPath.row] andType:@"music"];
-    } else {
-        // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[self.collectionListArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
-    }
-    cell.collectMusicButton.selected = !cell.collectMusicButton.selected;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
-}
-
-#pragma mark - NSNotificationCenter
-- (void)shouldReload {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    if (self.typeSegementControl.selectedSegmentIndex == 0) {
-        self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"movie"]];
-    } else {
-        self.collectionListArray = [[NSMutableArray alloc] initWithArray:[collectionManager getCollectionWithType:@"music"]];
-    }
-    [self.musicCollectionListTableView reloadData];
+#pragma mark - Private Methods
+- (CollectionListContentViewController *)viewControllerWithMediaType:(MediaType)mediaType {
+    CollectionListContentViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionListContentViewController"];
+    contentViewController.displayMediaType = mediaType;
+    return contentViewController;
 }
 
 - (void)didReceiveMemoryWarning {

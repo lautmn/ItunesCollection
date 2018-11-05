@@ -207,7 +207,7 @@
     [tableView endUpdates];
 }
 
-#pragma mark - MovieCellDelegate
+#pragma mark - CustomCellDelegate
 
 - (void)didClickReadMoreInCell:(CustomTableViewCell *)cell {
     cell.longDescription.numberOfLines = 0;
