@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		082A0A9F218FFF260062B7A8 /* CollectionListContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0A9E218FFF260062B7A8 /* CollectionListContentViewController.m */; };
 		082A0AA2219003A10062B7A8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AA1219003A10062B7A8 /* CustomTableViewCell.m */; };
+		082A0AA521902C660062B7A8 /* ItunesWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AA421902C660062B7A8 /* ItunesWebViewController.m */; };
+		082A0AA721902DDC0062B7A8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082A0AA621902DDC0062B7A8 /* WebKit.framework */; };
 		083B23C521883E020071D760 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C421883E020071D760 /* SearchViewController.m */; };
 		083B23C821883E120071D760 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C721883E120071D760 /* ProfileViewController.m */; };
 		083B23CC21883EF00071D760 /* img_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CA21883EF00071D760 /* img_search.png */; };
@@ -36,6 +38,9 @@
 		082A0A9E218FFF260062B7A8 /* CollectionListContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionListContentViewController.m; sourceTree = "<group>"; };
 		082A0AA0219003A10062B7A8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		082A0AA1219003A10062B7A8 /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		082A0AA321902C660062B7A8 /* ItunesWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItunesWebViewController.h; sourceTree = "<group>"; };
+		082A0AA421902C660062B7A8 /* ItunesWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItunesWebViewController.m; sourceTree = "<group>"; };
+		082A0AA621902DDC0062B7A8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		083B23C321883E020071D760 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		083B23C421883E020071D760 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		083B23C621883E120071D760 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				082A0AA721902DDC0062B7A8 /* WebKit.framework in Frameworks */,
 				4B6B297DFD748AD9A395934E /* libPods-ItunesCollection.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +126,8 @@
 				08EC1CF9218C425400D7D5FF /* CollectionListViewController.m */,
 				082A0A9D218FFF260062B7A8 /* CollectionListContentViewController.h */,
 				082A0A9E218FFF260062B7A8 /* CollectionListContentViewController.m */,
+				082A0AA321902C660062B7A8 /* ItunesWebViewController.h */,
+				082A0AA421902C660062B7A8 /* ItunesWebViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 		53A51635AA386B59E8129C09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				082A0AA621902DDC0062B7A8 /* WebKit.framework */,
 				C3EBFA53D187DC9A831133A5 /* libPods-ItunesCollection.a */,
 			);
 			name = Frameworks;
@@ -296,6 +305,7 @@
 				083B23D02188446F0071D760 /* ItunesApiConnector.m in Sources */,
 				082A0A9F218FFF260062B7A8 /* CollectionListContentViewController.m in Sources */,
 				083B23C521883E020071D760 /* SearchViewController.m in Sources */,
+				082A0AA521902C660062B7A8 /* ItunesWebViewController.m in Sources */,
 				086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */,
 				083B23C821883E120071D760 /* ProfileViewController.m in Sources */,
 			);
