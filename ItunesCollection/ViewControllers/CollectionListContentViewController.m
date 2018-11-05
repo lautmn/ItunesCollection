@@ -63,7 +63,7 @@
     customCell.trackName.text = [self.collectionListArray[indexPath.row] objectForKey:@"trackName"];
     customCell.artistName.text = [self.collectionListArray[indexPath.row] objectForKey:@"artistName"];
     customCell.collectionName.text = [self.collectionListArray[indexPath.row] objectForKey:@"collectionName"];
-    customCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.collectionListArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
+    customCell.trackTime.text = [self convertTrackTimeMillisToString:[self.collectionListArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
     customCell.longDescription.text = [self.collectionListArray[indexPath.row] objectForKey:@"longDescription"];
     
     NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.collectionListArray[indexPath.row] objectForKey:@"trackId"]];
@@ -135,6 +135,22 @@
             return @"";
             break;
     }
+}
+
+#pragma mark - Private Methods
+- (NSString *)convertTrackTimeMillisToString:(NSNumber *)trackTimeMillis {
+    NSString *formatTimeString = @"";
+    NSUInteger intTimeSec = trackTimeMillis.integerValue / 1000;
+    NSUInteger h = intTimeSec / 3600;
+    NSUInteger m = (intTimeSec / 60) % 60;
+    NSUInteger s = intTimeSec % 60;
+    formatTimeString = [formatTimeString stringByAppendingString:h > 0 ? [NSString stringWithFormat:@"%li:", h] : @""];
+    formatTimeString = [formatTimeString stringByAppendingString:h > 0 && m < 10 ? @"0" : @""];
+    formatTimeString = [formatTimeString stringByAppendingString:m > 0 ? [NSString stringWithFormat:@"%li:", m] : @""];
+    formatTimeString = [formatTimeString stringByAppendingString:m > 0 && s < 10 ? @"0" : @""];
+    formatTimeString = [formatTimeString stringByAppendingString:s > 0 ? [NSString stringWithFormat:@"%li", s] : @""];
+    
+    return formatTimeString;
 }
 
 - (void)didReceiveMemoryWarning {
