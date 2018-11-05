@@ -8,11 +8,10 @@
 
 #import "SearchViewController.h"
 #import "ItunesApiConnector.h"
-#import "MusicTableViewCell.h"
-#import "MovieTableViewCell.h"
+#import "CustomTableViewCell.h"
 #import "MediaCollectionManager.h"
 
-@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, MovieCellDelegate, MusicCellDelegate, UITextFieldDelegate> {
+@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, CustomCellDelegate, UITextFieldDelegate> {
     BOOL didFinishSearchMovie;
     BOOL didFinishSearchMusic;
 }
@@ -46,6 +45,9 @@
     [self.movieArray removeAllObjects];
     [self.musicArray removeAllObjects];
     [self.resultTableView reloadData];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"搜尋中" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
     
     [connector searchItunesMovieWithKeyword:self.keywordTextField.text completion:^(id result, NSError *error) {
         self->didFinishSearchMovie = YES;
@@ -96,6 +98,7 @@
 
 - (void)checkShouldReloadTableView {
     if (didFinishSearchMusic && didFinishSearchMovie) {
+        [self dismissViewControllerAnimated:YES completion:nil];
         didFinishSearchMusic = NO;
         didFinishSearchMovie = NO;
         [self.resultTableView reloadData];
@@ -146,73 +149,55 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    
+    NSString *cellIdentifier;
+    NSArray *sourceArray;
+    NSString *mediaType;
     if (indexPath.section == 0 && self.movieArray.count > 0) {
-        static NSString *movieCellIdentifier = @"MovieTableViewCell";
-        MovieTableViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
-        movieCell.delegate = self;
-        movieCell.trackName.text = [self.movieArray[indexPath.row] objectForKey:@"trackName"];
-        movieCell.artistName.text = [self.movieArray[indexPath.row] objectForKey:@"artistName"];
-        movieCell.collectionName.text = [self.movieArray[indexPath.row] objectForKey:@"collectionName"];
-        movieCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.movieArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
-        movieCell.longDescription.text = [self.movieArray[indexPath.row] objectForKey:@"longDescription"];
-        
-        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.movieArray[indexPath.row] objectForKey:@"trackId"]];
-        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
-        movieCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
-        if (![NSData dataWithContentsOfFile:imgPath]) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *imgUrlString = [self.movieArray[indexPath.row] objectForKey:@"artworkUrl100"];
-                NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
-                NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    movieCell.artworkImageView.image = [UIImage imageWithData:imgData];
-                });
-            });
-        } else {
-            movieCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
-        }
-        
-        movieCell.longDescription.numberOfLines = 2;
-        movieCell.readMoreButton.hidden = NO;
-        
-        movieCell.collectMovieButton.selected = [collectionManager isCollectedTrackId:[self.movieArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
-        
-        return movieCell;
+        cellIdentifier = @"MovieTableViewCell";
+        sourceArray = self.movieArray;
+        mediaType = @"movie";
     } else {
-        static NSString *musicCellIdentifier = @"MusicTableViewCell";
-        MusicTableViewCell *musicCell = [tableView dequeueReusableCellWithIdentifier:musicCellIdentifier];
-        musicCell.delegate = self;
-        musicCell.trackName.text = [self.musicArray[indexPath.row] objectForKey:@"trackName"];
-        musicCell.artistName.text = [self.musicArray[indexPath.row] objectForKey:@"artistName"];
-        musicCell.collectionName.text = [self.musicArray[indexPath.row] objectForKey:@"collectionName"];
-        musicCell.trackTime.text = [NSString stringWithFormat:@"%@", [self.musicArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
-        
-        NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [self.musicArray[indexPath.row] objectForKey:@"trackId"]];
-        NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
-        musicCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
-        if (![NSData dataWithContentsOfFile:imgPath]) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *imgUrlString = [self.musicArray[indexPath.row] objectForKey:@"artworkUrl100"];
-                NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
-                NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    musicCell.artworkImageView.image = [UIImage imageWithData:imgData];
-                });
-            });
-        } else {
-            musicCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
-        }
-        
-        musicCell.collectMusicButton.selected = [collectionManager isCollectedTrackId:[self.musicArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
-        
-        return musicCell;
+        cellIdentifier = @"MusicTableViewCell";
+        sourceArray = self.musicArray;
+        mediaType = @"music";
     }
+    CustomTableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    customCell.delegate = self;
+    customCell.trackName.text = [sourceArray[indexPath.row] objectForKey:@"trackName"];
+    customCell.artistName.text = [sourceArray[indexPath.row] objectForKey:@"artistName"];
+    customCell.collectionName.text = [sourceArray[indexPath.row] objectForKey:@"collectionName"];
+    customCell.trackTime.text = [NSString stringWithFormat:@"%@", [sourceArray[indexPath.row] objectForKey:@"trackTimeMillis"]];
+    customCell.longDescription.text = [sourceArray[indexPath.row] objectForKey:@"longDescription"];
+    
+    NSString *imgName = [NSString stringWithFormat:@"img_%@.png", [sourceArray[indexPath.row] objectForKey:@"trackId"]];
+    NSString *imgPath = [cachesPath stringByAppendingPathComponent:imgName];
+    customCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
+    if (![NSData dataWithContentsOfFile:imgPath]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *imgUrlString = [self.movieArray[indexPath.row] objectForKey:@"artworkUrl100"];
+            NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
+            NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                customCell.artworkImageView.image = [UIImage imageWithData:imgData];
+            });
+        });
+    } else {
+        customCell.artworkImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imgPath]];
+    }
+    
+    customCell.longDescription.numberOfLines = 2;
+    customCell.readMoreButton.hidden = NO;
+    
+    customCell.collectButton.selected = [collectionManager isCollectedTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
+    
+    return customCell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MusicTableViewCell *musicCell = [tableView cellForRowAtIndexPath:indexPath];
+    CustomTableViewCell *musicCell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"%@", musicCell);
     
     musicCell.trackTime.numberOfLines = 0;
@@ -224,38 +209,34 @@
 
 #pragma mark - MovieCellDelegate
 
-- (void)didClickReadMoreInCell:(MovieTableViewCell *)cell {
+- (void)didClickReadMoreInCell:(CustomTableViewCell *)cell {
     cell.longDescription.numberOfLines = 0;
     cell.readMoreButton.hidden = YES;
     [self.resultTableView beginUpdates];
     [self.resultTableView endUpdates];
 }
 
-- (void)didCollectMovieInCell:(MovieTableViewCell *)cell {
+- (void)didCollectItemInCell:(CustomTableViewCell *)cell {
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
     NSIndexPath *indexPath = [self.resultTableView indexPathForCell:cell];
-    if (!cell.collectMovieButton.isSelected) {
+    NSArray *sourceArray;
+    NSString *mediaType;
+    if (indexPath.section == 0 && self.movieArray.count > 0) {
+        sourceArray = self.movieArray;
+        mediaType = @"movie";
+    } else {
+        sourceArray = self.musicArray;
+        mediaType = @"music";
+    }
+    
+    if (!cell.collectButton.isSelected) {
         // 收藏
-        [collectionManager storeCollectionWithInfo:self.movieArray[indexPath.row] andType:@"movie"];
+        [collectionManager storeCollectionWithInfo:sourceArray[indexPath.row] andType:mediaType];
     } else {
         // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[self.movieArray[indexPath.row] objectForKey:@"trackId"] andType:@"movie"];
+        [collectionManager deleteCollectionWithTrackId:[sourceArray[indexPath.row] objectForKey:@"trackId"] andType:mediaType];
     }
-    cell.collectMovieButton.selected = !cell.collectMovieButton.selected;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
-}
-
-- (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    NSIndexPath *indexPath = [self.resultTableView indexPathForCell:cell];
-    if (!cell.collectMusicButton.isSelected) {
-        // 收藏
-        [collectionManager storeCollectionWithInfo:self.musicArray[indexPath.row] andType:@"music"];
-    } else {
-        // 取消收藏
-        [collectionManager deleteCollectionWithTrackId:[self.musicArray[indexPath.row] objectForKey:@"trackId"] andType:@"music"];
-    }
-    cell.collectMusicButton.selected = !cell.collectMusicButton.selected;
+    cell.collectButton.selected = !cell.collectButton.selected;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
 }
 

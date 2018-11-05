@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *collectionListArray;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegementControl;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *collectionScrollView;
+
 
 @end
 
@@ -153,6 +153,8 @@
     cell.collectMovieButton.selected = !cell.collectMovieButton.selected;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_RELOAD" object:nil];
 }
+
+#pragma mark - MusicCellDelegate
 
 - (void)didCollectMusicInCell:(MusicTableViewCell *)cell {
     MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
