@@ -7,12 +7,12 @@
 //
 
 #import "SelectThemeViewController.h"
-#import "MediaCollectionManager.h"
 #import "ThemeTableViewCell.h"
+#import "ThemeManager.h"
 
 @interface SelectThemeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *themeTableView;
-@property (strong, nonatomic) MediaCollectionManager *collectionManager;
+@property (strong, nonatomic) ThemeManager *themeManager;
 
 @end
 
@@ -21,22 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.collectionManager = [MediaCollectionManager shareInstance];
+    self.themeManager = [ThemeManager shareInstance];
     [self.themeTableView registerNib:[UINib nibWithNibName:@"ThemeTableViewCell" bundle:nil] forCellReuseIdentifier:@"ThemeTableViewCell"];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.collectionManager getThemeList].count;
+    return [self.themeManager getThemeList].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"ThemeTableViewCell";
 
     ThemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.themeNameLabel.text = [self.collectionManager getThemeList][indexPath.row];
+    cell.themeNameLabel.text = [self.themeManager getThemeList][indexPath.row];
 
-    cell.checkImageView.hidden = [cell.themeNameLabel.text isEqualToString:[self.collectionManager getCurrentThemeName]] ? NO : YES;
+    cell.checkImageView.hidden = [cell.themeNameLabel.text isEqualToString:[self.themeManager getCurrentThemeName]] ? NO : YES;
 
     return cell;
 }
@@ -44,8 +44,8 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![[self.collectionManager getCurrentThemeName] isEqualToString:[self.collectionManager getThemeList][indexPath.row]]) {
-        [self.collectionManager changeThemeColorWithName:[self.collectionManager getThemeList][indexPath.row]];
+    if (![[self.themeManager getCurrentThemeName] isEqualToString:[self.themeManager getThemeList][indexPath.row]]) {
+        [self.themeManager changeThemeColorWithName:[self.themeManager getThemeList][indexPath.row]];
         [self.themeTableView reloadData];
     }
 }

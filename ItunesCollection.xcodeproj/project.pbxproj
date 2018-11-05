@@ -29,6 +29,7 @@
 		083B23D521897B010071D760 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083B23D321897B010071D760 /* MusicTableViewCell.xib */; };
 		083B23DA2189AD490071D760 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083B23D82189AD490071D760 /* MovieTableViewCell.xib */; };
 		083B23DF2189E8B00071D760 /* MediaCollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23DE2189E8B00071D760 /* MediaCollectionManager.m */; };
+		08640DD42190840D00A7E3AD /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 08640DD32190840D00A7E3AD /* ThemeManager.m */; };
 		086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD2F21876D2400CABBF4 /* AppDelegate.m */; };
 		086CCD3621876D2400CABBF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3421876D2400CABBF4 /* Main.storyboard */; };
 		086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086CCD3721876D2400CABBF4 /* Assets.xcassets */; };
@@ -79,6 +80,8 @@
 		083B23D82189AD490071D760 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		083B23DD2189E8B00071D760 /* MediaCollectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaCollectionManager.h; sourceTree = "<group>"; };
 		083B23DE2189E8B00071D760 /* MediaCollectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaCollectionManager.m; sourceTree = "<group>"; };
+		08640DD22190840D00A7E3AD /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		08640DD32190840D00A7E3AD /* ThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		086CCD2B21876D2400CABBF4 /* ItunesCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086CCD2E21876D2400CABBF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		086CCD2F21876D2400CABBF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				083B23CF2188446F0071D760 /* ItunesApiConnector.m */,
 				083B23DD2189E8B00071D760 /* MediaCollectionManager.h */,
 				083B23DE2189E8B00071D760 /* MediaCollectionManager.m */,
+				08640DD22190840D00A7E3AD /* ThemeManager.h */,
+				08640DD32190840D00A7E3AD /* ThemeManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				082A0ABC21906C6D0062B7A8 /* ThemeUILabel.m in Sources */,
 				083B23C521883E020071D760 /* SearchViewController.m in Sources */,
 				082A0AA521902C660062B7A8 /* ItunesWebViewController.m in Sources */,
+				08640DD42190840D00A7E3AD /* ThemeManager.m in Sources */,
 				082A0AB321905A360062B7A8 /* SelectThemeViewController.m in Sources */,
 				086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */,
 				083B23C821883E120071D760 /* ProfileViewController.m in Sources */,

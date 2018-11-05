@@ -7,7 +7,7 @@
 //
 
 #import "ThemeUINavigationBar.h"
-#import "MediaCollectionManager.h"
+#import "ThemeManager.h"
 
 @implementation ThemeUINavigationBar
 
@@ -21,13 +21,13 @@
 }
 
 - (void)shouldChangeTheme {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
+    ThemeManager *themeManager = [ThemeManager shareInstance];
     // 背景顏色
-    self.barTintColor = [[collectionManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor cyanColor] : [UIColor blackColor];
+    self.barTintColor = [[themeManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor cyanColor] : [UIColor blackColor];
     // 返回按鈕文字圖案顏色
-    self.tintColor = [[collectionManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor];
+    self.tintColor = [[themeManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor];
     // 標題顏色
-    self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[[collectionManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[[themeManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor], NSForegroundColorAttributeName, nil];
 }
 
 

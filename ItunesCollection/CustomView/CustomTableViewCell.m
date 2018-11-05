@@ -7,7 +7,7 @@
 //
 
 #import "CustomTableViewCell.h"
-#import "MediaCollectionManager.h"
+#import "ThemeManager.h"
 
 @implementation CustomTableViewCell
 
@@ -31,8 +31,8 @@
 }
 
 - (void)shouldChangeTheme {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    self.backgroundColor = [[collectionManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor whiteColor] : [UIColor darkGrayColor];
+    ThemeManager *themeManager = [ThemeManager shareInstance];
+    self.backgroundColor = [[themeManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor whiteColor] : [UIColor darkGrayColor];
 }
 
 

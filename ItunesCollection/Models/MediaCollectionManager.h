@@ -19,8 +19,4 @@
 - (NSMutableArray *)getCollectionWithType:(NSString *)type;
 - (NSUInteger)getCollectionAmount;
 
-- (NSArray *)getThemeList;
-- (NSString *)getCurrentThemeName;
-- (void)changeThemeColorWithName:(NSString *)themeName;
-
 @end

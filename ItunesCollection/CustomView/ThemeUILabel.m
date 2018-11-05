@@ -7,7 +7,7 @@
 //
 
 #import "ThemeUILabel.h"
-#import "MediaCollectionManager.h"
+#import "ThemeManager.h"
 
 @implementation ThemeUILabel
 
@@ -21,8 +21,8 @@
 }
 
 - (void)shouldChangeTheme {
-    MediaCollectionManager *collectionManager = [MediaCollectionManager shareInstance];
-    self.textColor = [[collectionManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor];
+    ThemeManager *themeManager = [ThemeManager shareInstance];
+    self.textColor = [[themeManager getCurrentThemeName] isEqualToString:@"淺色主題"] ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 
