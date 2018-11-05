@@ -61,17 +61,30 @@
     return [self getCollectionWithType:@"movie"].count + [self getCollectionWithType:@"music"].count;
 }
 
-- (void)changeThemeColor {
+- (NSArray *)getThemeList {
+    return @[@"深色主題", @"淺色主題"];
+}
+
+- (NSString *)getCurrentThemeName {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (![userDefaults objectForKey:@"themeColor"] || [[userDefaults objectForKey:@"themeColor"] isEqualToString:@"darkColor"]) {
-        [userDefaults setObject:@"lightColor" forKey:@"themeColor"];
-    } else {
-        [userDefaults setObject:@"darkColor" forKey:@"themeColor"];
+    NSString *currentThemeName = [userDefaults objectForKey:@"themeName"];
+    if (!currentThemeName) {
+        currentThemeName = @"淺色主題";
+        [userDefaults setObject:currentThemeName forKey:@"themeName"];
+        [userDefaults synchronize];
     }
+    [UIApplication sharedApplication].statusBarStyle = [currentThemeName isEqualToString:@"淺色主題"] ? UIStatusBarStyleDefault : UIStatusBarStyleLightContent;
+    return currentThemeName;
+}
+
+- (void)changeThemeColorWithName:(NSString *)themeName {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:themeName forKey:@"themeName"];
     [userDefaults synchronize];
     
-    NSDictionary *lightColorInfo = @{@"123":[UIColor redColor]};
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"GET_FIRST_LOGIN_SUCCESS" object:responseObject];
+    [UIApplication sharedApplication].statusBarStyle = [[self getCurrentThemeName] isEqualToString:@"淺色主題"] ? UIStatusBarStyleDefault : UIStatusBarStyleLightContent;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOULD_CHANGE_THEME" object:nil];
 }
 
 @end

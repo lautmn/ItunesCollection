@@ -91,6 +91,13 @@
 
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *itunesUrlString = [self.collectionListArray[indexPath.row] objectForKey:@"trackViewUrl"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesUrlString] options:@{} completionHandler:nil];
+}
+
 #pragma mark - CustomCellDelegate
 
 - (void)didClickReadMoreInCell:(CustomTableViewCell *)cell {
@@ -121,6 +128,7 @@
     [self.collectionListTableView reloadData];
 }
 
+#pragma mark - Private Methods
 - (NSString *)getMediaType {
     switch (self.displayMediaType) {
         case Movie:
@@ -137,7 +145,6 @@
     }
 }
 
-#pragma mark - Private Methods
 - (NSString *)convertTrackTimeMillisToString:(NSNumber *)trackTimeMillis {
     NSString *formatTimeString = @"";
     NSUInteger intTimeSec = trackTimeMillis.integerValue / 1000;

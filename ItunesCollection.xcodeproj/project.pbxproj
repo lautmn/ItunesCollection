@@ -11,14 +11,22 @@
 		082A0AA2219003A10062B7A8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AA1219003A10062B7A8 /* CustomTableViewCell.m */; };
 		082A0AA521902C660062B7A8 /* ItunesWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AA421902C660062B7A8 /* ItunesWebViewController.m */; };
 		082A0AA721902DDC0062B7A8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082A0AA621902DDC0062B7A8 /* WebKit.framework */; };
+		082A0AAB219054540062B7A8 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 082A0AAA219054540062B7A8 /* check.png */; };
+		082A0AAF219055170062B7A8 /* ThemeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AAD219055170062B7A8 /* ThemeTableViewCell.m */; };
+		082A0AB0219055170062B7A8 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 082A0AAE219055170062B7A8 /* ThemeTableViewCell.xib */; };
+		082A0AB321905A360062B7A8 /* SelectThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AB221905A360062B7A8 /* SelectThemeViewController.m */; };
+		082A0ABC21906C6D0062B7A8 /* ThemeUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0ABB21906C6D0062B7A8 /* ThemeUILabel.m */; };
+		082A0AC52190757C0062B7A8 /* ThemeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AC42190757C0062B7A8 /* ThemeUIView.m */; };
+		082A0AC8219077550062B7A8 /* ThemeUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AC7219077550062B7A8 /* ThemeUITableView.m */; };
+		082A0ACB219078AC0062B7A8 /* ThemeUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0ACA219078AC0062B7A8 /* ThemeUIButton.m */; };
+		082A0ACE21907B3A0062B7A8 /* ThemeUINavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0ACD21907B3A0062B7A8 /* ThemeUINavigationBar.m */; };
+		082A0AD121907FB50062B7A8 /* ThemeUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A0AD021907FB50062B7A8 /* ThemeUITextField.m */; };
 		083B23C521883E020071D760 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C421883E020071D760 /* SearchViewController.m */; };
 		083B23C821883E120071D760 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23C721883E120071D760 /* ProfileViewController.m */; };
 		083B23CC21883EF00071D760 /* img_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CA21883EF00071D760 /* img_search.png */; };
 		083B23CD21883EF00071D760 /* img_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 083B23CB21883EF00071D760 /* img_profile.png */; };
 		083B23D02188446F0071D760 /* ItunesApiConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23CF2188446F0071D760 /* ItunesApiConnector.m */; };
-		083B23D421897B010071D760 /* MusicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23D221897B010071D760 /* MusicTableViewCell.m */; };
 		083B23D521897B010071D760 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083B23D321897B010071D760 /* MusicTableViewCell.xib */; };
-		083B23D92189AD490071D760 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23D72189AD490071D760 /* MovieTableViewCell.m */; };
 		083B23DA2189AD490071D760 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083B23D82189AD490071D760 /* MovieTableViewCell.xib */; };
 		083B23DF2189E8B00071D760 /* MediaCollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B23DE2189E8B00071D760 /* MediaCollectionManager.m */; };
 		086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 086CCD2F21876D2400CABBF4 /* AppDelegate.m */; };
@@ -41,6 +49,24 @@
 		082A0AA321902C660062B7A8 /* ItunesWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItunesWebViewController.h; sourceTree = "<group>"; };
 		082A0AA421902C660062B7A8 /* ItunesWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItunesWebViewController.m; sourceTree = "<group>"; };
 		082A0AA621902DDC0062B7A8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		082A0AAA219054540062B7A8 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		082A0AAC219055170062B7A8 /* ThemeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeTableViewCell.h; sourceTree = "<group>"; };
+		082A0AAD219055170062B7A8 /* ThemeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeTableViewCell.m; sourceTree = "<group>"; };
+		082A0AAE219055170062B7A8 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
+		082A0AB121905A360062B7A8 /* SelectThemeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectThemeViewController.h; sourceTree = "<group>"; };
+		082A0AB221905A360062B7A8 /* SelectThemeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectThemeViewController.m; sourceTree = "<group>"; };
+		082A0ABA21906C6D0062B7A8 /* ThemeUILabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUILabel.h; sourceTree = "<group>"; };
+		082A0ABB21906C6D0062B7A8 /* ThemeUILabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUILabel.m; sourceTree = "<group>"; };
+		082A0AC32190757C0062B7A8 /* ThemeUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUIView.h; sourceTree = "<group>"; };
+		082A0AC42190757C0062B7A8 /* ThemeUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUIView.m; sourceTree = "<group>"; };
+		082A0AC6219077550062B7A8 /* ThemeUITableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUITableView.h; sourceTree = "<group>"; };
+		082A0AC7219077550062B7A8 /* ThemeUITableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUITableView.m; sourceTree = "<group>"; };
+		082A0AC9219078AC0062B7A8 /* ThemeUIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUIButton.h; sourceTree = "<group>"; };
+		082A0ACA219078AC0062B7A8 /* ThemeUIButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUIButton.m; sourceTree = "<group>"; };
+		082A0ACC21907B3A0062B7A8 /* ThemeUINavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUINavigationBar.h; sourceTree = "<group>"; };
+		082A0ACD21907B3A0062B7A8 /* ThemeUINavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUINavigationBar.m; sourceTree = "<group>"; };
+		082A0ACF21907FB50062B7A8 /* ThemeUITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeUITextField.h; sourceTree = "<group>"; };
+		082A0AD021907FB50062B7A8 /* ThemeUITextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeUITextField.m; sourceTree = "<group>"; };
 		083B23C321883E020071D760 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		083B23C421883E020071D760 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		083B23C621883E120071D760 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -49,11 +75,7 @@
 		083B23CB21883EF00071D760 /* img_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_profile.png; sourceTree = "<group>"; };
 		083B23CE2188446F0071D760 /* ItunesApiConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItunesApiConnector.h; sourceTree = "<group>"; };
 		083B23CF2188446F0071D760 /* ItunesApiConnector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItunesApiConnector.m; sourceTree = "<group>"; };
-		083B23D121897B010071D760 /* MusicTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicTableViewCell.h; sourceTree = "<group>"; };
-		083B23D221897B010071D760 /* MusicTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicTableViewCell.m; sourceTree = "<group>"; };
 		083B23D321897B010071D760 /* MusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
-		083B23D62189AD490071D760 /* MovieTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
-		083B23D72189AD490071D760 /* MovieTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		083B23D82189AD490071D760 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		083B23DD2189E8B00071D760 /* MediaCollectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaCollectionManager.h; sourceTree = "<group>"; };
 		083B23DE2189E8B00071D760 /* MediaCollectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaCollectionManager.m; sourceTree = "<group>"; };
@@ -93,6 +115,7 @@
 			children = (
 				08EC1CF6218C26C200D7D5FF /* Black.png */,
 				083B23CB21883EF00071D760 /* img_profile.png */,
+				082A0AAA219054540062B7A8 /* check.png */,
 				083B23CA21883EF00071D760 /* img_search.png */,
 				08EC1CFB218C93F700D7D5FF /* qeustionMark.png */,
 				08EC1CFD218C942B00D7D5FF /* arrow.png */,
@@ -103,14 +126,25 @@
 		083B23DB2189BE7A0071D760 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				083B23D121897B010071D760 /* MusicTableViewCell.h */,
-				083B23D221897B010071D760 /* MusicTableViewCell.m */,
-				083B23D321897B010071D760 /* MusicTableViewCell.xib */,
-				083B23D62189AD490071D760 /* MovieTableViewCell.h */,
-				083B23D72189AD490071D760 /* MovieTableViewCell.m */,
-				083B23D82189AD490071D760 /* MovieTableViewCell.xib */,
 				082A0AA0219003A10062B7A8 /* CustomTableViewCell.h */,
 				082A0AA1219003A10062B7A8 /* CustomTableViewCell.m */,
+				083B23D321897B010071D760 /* MusicTableViewCell.xib */,
+				083B23D82189AD490071D760 /* MovieTableViewCell.xib */,
+				082A0AAC219055170062B7A8 /* ThemeTableViewCell.h */,
+				082A0AAD219055170062B7A8 /* ThemeTableViewCell.m */,
+				082A0AAE219055170062B7A8 /* ThemeTableViewCell.xib */,
+				082A0AC32190757C0062B7A8 /* ThemeUIView.h */,
+				082A0AC42190757C0062B7A8 /* ThemeUIView.m */,
+				082A0ABA21906C6D0062B7A8 /* ThemeUILabel.h */,
+				082A0ABB21906C6D0062B7A8 /* ThemeUILabel.m */,
+				082A0AC6219077550062B7A8 /* ThemeUITableView.h */,
+				082A0AC7219077550062B7A8 /* ThemeUITableView.m */,
+				082A0AC9219078AC0062B7A8 /* ThemeUIButton.h */,
+				082A0ACA219078AC0062B7A8 /* ThemeUIButton.m */,
+				082A0ACC21907B3A0062B7A8 /* ThemeUINavigationBar.h */,
+				082A0ACD21907B3A0062B7A8 /* ThemeUINavigationBar.m */,
+				082A0ACF21907FB50062B7A8 /* ThemeUITextField.h */,
+				082A0AD021907FB50062B7A8 /* ThemeUITextField.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -122,6 +156,8 @@
 				083B23C421883E020071D760 /* SearchViewController.m */,
 				083B23C621883E120071D760 /* ProfileViewController.h */,
 				083B23C721883E120071D760 /* ProfileViewController.m */,
+				082A0AB121905A360062B7A8 /* SelectThemeViewController.h */,
+				082A0AB221905A360062B7A8 /* SelectThemeViewController.m */,
 				08EC1CF8218C425400D7D5FF /* CollectionListViewController.h */,
 				08EC1CF9218C425400D7D5FF /* CollectionListViewController.m */,
 				082A0A9D218FFF260062B7A8 /* CollectionListContentViewController.h */,
@@ -256,9 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				086CCD3B21876D2400CABBF4 /* LaunchScreen.storyboard in Resources */,
+				082A0AB0219055170062B7A8 /* ThemeTableViewCell.xib in Resources */,
 				08EC1CF7218C26C200D7D5FF /* Black.png in Resources */,
 				083B23DA2189AD490071D760 /* MovieTableViewCell.xib in Resources */,
 				08EC1CFE218C942B00D7D5FF /* arrow.png in Resources */,
+				082A0AAB219054540062B7A8 /* check.png in Resources */,
 				086CCD3821876D2400CABBF4 /* Assets.xcassets in Resources */,
 				083B23CD21883EF00071D760 /* img_profile.png in Resources */,
 				08EC1CFC218C93F700D7D5FF /* qeustionMark.png in Resources */,
@@ -297,17 +335,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				086CCD3E21876D2400CABBF4 /* main.m in Sources */,
-				083B23D92189AD490071D760 /* MovieTableViewCell.m in Sources */,
 				083B23DF2189E8B00071D760 /* MediaCollectionManager.m in Sources */,
+				082A0AC8219077550062B7A8 /* ThemeUITableView.m in Sources */,
+				082A0AC52190757C0062B7A8 /* ThemeUIView.m in Sources */,
 				08EC1CFA218C425400D7D5FF /* CollectionListViewController.m in Sources */,
-				083B23D421897B010071D760 /* MusicTableViewCell.m in Sources */,
 				082A0AA2219003A10062B7A8 /* CustomTableViewCell.m in Sources */,
 				083B23D02188446F0071D760 /* ItunesApiConnector.m in Sources */,
+				082A0ACB219078AC0062B7A8 /* ThemeUIButton.m in Sources */,
+				082A0ACE21907B3A0062B7A8 /* ThemeUINavigationBar.m in Sources */,
 				082A0A9F218FFF260062B7A8 /* CollectionListContentViewController.m in Sources */,
+				082A0ABC21906C6D0062B7A8 /* ThemeUILabel.m in Sources */,
 				083B23C521883E020071D760 /* SearchViewController.m in Sources */,
 				082A0AA521902C660062B7A8 /* ItunesWebViewController.m in Sources */,
+				082A0AB321905A360062B7A8 /* SelectThemeViewController.m in Sources */,
 				086CCD3021876D2400CABBF4 /* AppDelegate.m in Sources */,
 				083B23C821883E120071D760 /* ProfileViewController.m in Sources */,
+				082A0AAF219055170062B7A8 /* ThemeTableViewCell.m in Sources */,
+				082A0AD121907FB50062B7A8 /* ThemeUITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

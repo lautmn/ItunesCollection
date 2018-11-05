@@ -24,6 +24,7 @@
     // Do any additional setup after loading the view.
     self.collectionManager = [MediaCollectionManager shareInstance];
     self.collectionAmountLabel.text = [NSString stringWithFormat:@"共有 %li 項收藏", [self.collectionManager getCollectionAmount]];
+    self.themeColorLabel.text = [self.collectionManager getCurrentThemeName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReload) name:@"SHOULD_RELOAD" object:nil];
 }
 

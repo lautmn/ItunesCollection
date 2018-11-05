@@ -40,7 +40,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReload) name:@"SHOULD_RELOAD" object:nil];
 }
 
+#pragma mark - IBAction
 - (IBAction)searchButtonClicked:(id)sender {
+    
     [self.resultTableView setContentOffset:CGPointZero animated:NO];
     [self.keywordTextField resignFirstResponder];
     
@@ -176,7 +178,7 @@
     customCell.artworkImageView.image = [UIImage imageNamed:@"Black.png"];
     if (![NSData dataWithContentsOfFile:imgPath]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *imgUrlString = [self.movieArray[indexPath.row] objectForKey:@"artworkUrl100"];
+            NSString *imgUrlString = [sourceArray[indexPath.row] objectForKey:@"artworkUrl100"];
             NSURL *imgUrl = [NSURL URLWithString:imgUrlString];
             NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -198,14 +200,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CustomTableViewCell *musicCell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%@", musicCell);
-    
-    musicCell.trackTime.numberOfLines = 0;
-    [musicCell.trackTime sizeToFit];
-
-    [tableView beginUpdates];
-    [tableView endUpdates];
+    NSArray *sourceArray = indexPath.section == 0 && self.movieArray.count > 0 ? self.movieArray : self.musicArray;
+    NSString *itunesUrlString = [sourceArray[indexPath.row] objectForKey:@"trackViewUrl"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesUrlString] options:@{} completionHandler:nil];
 }
 
 #pragma mark - CustomCellDelegate
