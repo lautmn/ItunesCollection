@@ -31,7 +31,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *collectionArray = [[NSMutableArray alloc] initWithArray:[userDefaults objectForKey:type]];
     for (NSMutableDictionary *collectionInfo in collectionArray) {
-        if ([[collectionInfo objectForKey:@"trackId"] isEqualToString:trackId]) {
+        if ([[collectionInfo objectForKey:@"trackId"] isEqual:trackId]) {
             [collectionArray removeObject:collectionInfo];
             break;
         }
@@ -44,7 +44,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *collectionArray = [[NSMutableArray alloc] initWithArray:[userDefaults objectForKey:type]];
     for (NSDictionary *collectionInfo in collectionArray) {
-        if ([[collectionInfo objectForKey:@"trackId"] isEqualToString:trackId]) {
+        if ([[collectionInfo objectForKey:@"trackId"] isEqual:trackId]) {
             return YES;
         }
     }
